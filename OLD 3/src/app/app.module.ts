@@ -11,12 +11,11 @@ import { TaxPipePipe } from './tax-pipe.pipe';
 import { OrderService } from "./order.service";
 import { ReceiptComponent } from './receipt/receipt.component';
 import { ReceiptSelectorComponent } from './receipt-selector/receipt-selector.component'
-import {routing} from "./app.routing";
-import { AboutComponent } from './about/about.component' // import routing,
+import { routing } from './app.routing';
+import { AboutComponent } from './about/about.component' // import routing
 
 @NgModule({
   declarations: [
-
     AppComponent,
     TotalPipePipe,
     TaxPipePipe,
@@ -27,7 +26,7 @@ import { AboutComponent } from './about/about.component' // import routing,
     BrowserModule,
     FormsModule,
     HttpModule,
-    routing // use routing in import ==> make  router-outlet working
+    routing //use routing in import
   ],
   providers: [
     OrderService//add in provider so all component know it

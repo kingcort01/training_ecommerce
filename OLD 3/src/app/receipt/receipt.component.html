@@ -1,5 +1,4 @@
-
-<section *ngIf="order">
+<section *ngIf="order"> <!-- Check if order is not undefined or null -->
   <h1>Date  {{order.create_time | date:'fullDate'}}</h1>
   <div>
     <table class='table table-bordered'>
@@ -10,7 +9,7 @@
         <th>Total</th>
       </tr>
       <tbody>
-        <tr *ngFor="let orderItem of order.items" >
+        <tr *ngFor="let orderItem of order.items" > 
           <td>{{orderItem.item}}</td>
           <td>{{orderItem.quantity | number}}</td>
           <td>{{orderItem.unit_price | currency:"MYR"}}</td>
