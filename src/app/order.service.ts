@@ -30,7 +30,7 @@ export class OrderService {
     return orders;
   }
 
-  getOrder(id:number){
+  getOrder(id:string){
 
     let all_order = this.getAllOrder();
     for(let i=0; i < all_order.length; i++)
