@@ -17,8 +17,17 @@ const appRoute:Routes = [
     {
         path : 'home',
         component:ReceiptSelectorComponent
-    },{
+    },
+    {
+        path : 'receipt/:id',
+        component : ReceiptComponent
+    },
+    {
         path : 'receipt',
+        component : ReceiptComponent
+    },
+    {
+        path : 'about',
         component : ReceiptComponent
     }
         
