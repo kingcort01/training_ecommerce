@@ -1,13 +1,13 @@
 import { OrderItem } from "./order-item"
 
 export class Order {
-    id:string // change id type to string
+    id:string //change to string from number
     create_time:Date;
     items:Array<OrderItem>
-    
+
     constructor(items:Array<OrderItem>, date?:Date){
         let now = new Date()
-        this.id = now.getTime() + "-" + Math.floor(Math.random()*100)
+        this.id = now.getTime() + " - " + Math.floor(Math.random()*100)
         if(!date)
             this.create_time = now
         else
@@ -16,12 +16,13 @@ export class Order {
     }
 
     getTotal():number{
-        var sum =0;
-        this.items.forEach(item=>{
-            sum += item.quantity * item.unit_price
 
-        });
-        return sum;
+        let sum = 0
+        this.items.forEach(item =>{
+        sum += item.quantity * item.unit_price
+        })
+        return sum
+
     }
 
 }

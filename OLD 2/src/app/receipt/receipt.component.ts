@@ -10,9 +10,7 @@ export class ReceiptComponent implements OnInit {
   @Input()
   order
 
-  constructor() {
-    
-   }
+  constructor() { }
 
   ngOnInit() {
   }
