@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import { Order } from "./order"
 import { OrderItem } from "./order-item"
 
+
+
 const ORDERS = [
       new Order([
         new OrderItem('TestA', 1, 100),
@@ -30,41 +32,47 @@ const LOCAL_KEY:string = "order_key"
 @Injectable()
 export class OrderService {
    
-  constructor() {
-    //make everytime we call this service load all data to _orders 
-    this.load();
-  }
+  constructor() { 
 
+    this.load()
+
+  }
   private _orders:Array<Order>;
 
   //save data to localstorage
-  save(){
+  save(){ // orders:Array<Order> ----
+
+    console.log("saved : ", this._orders)
     localStorage[LOCAL_KEY] = JSON.stringify(this._orders)
+
   }
 
   //load orderItem data from local storage
   //if there is not data give it initial data
   load():Array<Order>{
-    
-    let string_data = localStorage[LOCAL_KEY];
+    //when we found data
+    let string_data = localStorage[LOCAL_KEY]
     let order_array;
-    if(typeof string_data == "undefined")
-    {
-      order_array = ORDERS; //when we not found data
+    console.log(" THE STRING DATA : ", string_data)
+    if(typeof string_data == 'undefined'){
+      order_array = ORDERS //when we not found data
       //save data in localstorage
-      this._orders =  this.loadData(order_array)
+      console.log('how come not : ', this.loadData(order_array))
+      this._orders = this.loadData(ORDERS)
+      console.log("order array : ", this._orders)
       this.save()
     }else{
-      order_array = JSON.parse(string_data);//when we found data
+      order_array = JSON.parse(string_data)//when we found data
       this._orders = this.loadData(order_array)
     }
-    return this._orders;
-  }
 
+    return this._orders
+
+  }
 
   getAllOrder(): Array<Order>{
     
-    return this._orders;
+    return this._orders //ORDERS;
   }
 
   getOrder(id:string){
@@ -76,19 +84,24 @@ export class OrderService {
   }
 
   loadData(orders_json_array:Array<any>){
+
     let orders:Array<Order> = [];
-    orders_json_array.forEach( (orderItem, index, arr)=>{
-      let items:Array<OrderItem> = []
-      orderItem.items.forEach( (item, item_index, item_arr)=>{
+
+    orders_json_array.forEach( (OrderItem, index, arr) => {
+      let items:Array<OrderItem>
+      OrderItem.items.forEach( (item, item_index, item_arr) => {
         items.push(new OrderItem(item.item, item.quantity, item.unit_price))
       })
-      let order = new Order(items, new Date(orderItem.create_time))
-      order.id = orderItem.id;
-      orders.push(order);
-    } )
-    return orders;
+
+      let order = new Order(items, new Date(OrderItem.create_time))
+      order.id = OrderItem.id
+      orders.push(order)
+
+    })
+
+    return orders
+
   }
-  //then tea break :) 
 
 
 }

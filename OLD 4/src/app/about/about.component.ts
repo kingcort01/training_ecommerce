@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from "@angular/router"//import router
+//get data from router
+// import { ActivatedRoute, Params  } from '@angular/router'
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-about',
@@ -14,7 +16,9 @@ export class AboutComponent implements OnInit {
   }
 
   navigate(){
-    this.router.navigate(['']);//make it navigate
+    this.router.navigate(['']) //make it navigate
   }
+
+  // asdfds
 
 }

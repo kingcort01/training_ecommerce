@@ -21,8 +21,7 @@ import { AboutComponent } from './about/about.component' // import routing,
     TotalPipePipe,
     TaxPipePipe,
     ReceiptComponent,
-    ReceiptSelectorComponent,
-    AboutComponent
+    ReceiptSelectorComponent, AboutComponent
   ],
   imports: [
     BrowserModule,

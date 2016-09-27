@@ -23,16 +23,17 @@ const appRoute:Routes = [
     {
         path:'receipt/:id',
         component:ReceiptComponent
-    },
-    {
-        path:'about',
-        component:AboutComponent
     }
     /*
     {
         path:'receipt',
         component:ReceiptComponent
     }*/
+    ,
+    {
+        path: 'about',
+        component:AboutComponent
+    }
 
 
 ]
