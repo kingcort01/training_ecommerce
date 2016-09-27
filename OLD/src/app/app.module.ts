@@ -7,17 +7,15 @@ import { AppComponent } from './app.component';
 import { TotalPipePipe } from './total-pipe.pipe';
 import { TaxPipePipe } from './tax-pipe.pipe';
 
-//import from order.service
 import { OrderService } from "./order.service";
-import { ReceiptComponent } from './receipt/receipt.component';
-import { ReceiptSelectorComponent } from './receipt-selector/receipt-selector.component'
+import { ReceiptComponent } from './receipt/receipt.component'
 
 @NgModule({
   declarations: [
     AppComponent,
     TotalPipePipe,
     TaxPipePipe,
-    ReceiptComponent, ReceiptSelectorComponent
+    ReceiptComponent
   ],
   imports: [
     BrowserModule,
@@ -25,7 +23,7 @@ import { ReceiptSelectorComponent } from './receipt-selector/receipt-selector.co
     HttpModule
   ],
   providers: [
-    OrderService//add in provider so all component know it
+    OrderService
   ],
   bootstrap: [AppComponent]
 })
