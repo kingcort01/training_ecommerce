@@ -82,6 +82,8 @@ export class OrderService {
     let index = this._orders.findIndex( item => {
       return item.id == order.id
     })
+    console.log("NOW WHAT : ", order, " ==== ", this._orders)
+    console.log("WHAT IS NOW UR INDEX : ", index)
     // let index = -1
     // for(let i=0; i < this._orders.length; i++)
     //   if(this._order[i].id == order.id){

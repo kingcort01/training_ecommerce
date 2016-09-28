@@ -14,6 +14,7 @@ export class ReceiptEditorComponent implements OnInit {
   constructor(private os:OrderService, private route:ActivatedRoute, private router:Router) { } // get data from other files or from the imported files
   private formDate:string;  // init variable and its type
   private order:Order; // init variable and its type e.g. Order has its own data format
+  private addFlag:boolean;
 
   //will run when create component-->2
   ngOnInit() { 
@@ -81,7 +82,7 @@ export class ReceiptEditorComponent implements OnInit {
       alert('You are wrong!!!')
     else{
       alert('You have been saved!! . . . .For now!!')
-      this.router.navigate(['home']);  
+      // this.router.navigate(['home']);  
     }
     
     //or we could navigate back to home
