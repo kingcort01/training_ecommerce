@@ -75,6 +75,26 @@ export class OrderService {
     })
   }
 
+  //update order and save to our db
+  updateOrder(order:Order){
+    //find index of order in _orders
+    //in case typescript is 2.x.x
+    let index = this._orders.findIndex( item => {
+      return item.id == order.id
+    })
+    // let index = -1
+    // for(let i=0; i < this._orders.length; i++)
+    //   if(this._order[i].id == order.id){
+    //     index = i
+    //     break;
+    //   }
+    //replace _order[index] with order
+    this._orders[index] = order
+    //then call save() function
+    this.save()
+
+  }
+
   loadData(orders_json_array:Array<any>){
     let orders:Array<Order> = [];
     orders_json_array.forEach( (orderItem, index, arr)=>{

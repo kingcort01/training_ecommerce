@@ -5,9 +5,35 @@
   </div>
   <div class="col-md-11">
     <label for="">
-      <input type="date" class="form-control">
+      <input type="date" [(ngModel)]="formDate" class="form-control">
     </label>
   </div>
-  <!-- for edit items -->
+  <div class="debug-mode">
+    validate status : {{validate()}}
+  </div>
+  <!-- here is for edit items -->
+  <button class="btn btn-primary" (click)="addItem()">Add Item</button>
+  <table class="table">
+    <tr class="row" *ngFor="let order_item of order.items; let i = index">
+      <td>
+        <input type="text" [(ngModel)]="order_item.item" placeholder="Item">
+      </td>
+      <td>
+        <input type="number" [(ngModel)]="order_item.quantity" placeholder="Quantity">
+      </td>
+      <td>
+        <input type="number" [(ngModel)]="order_item.unit_price" placeholder="Unit Price">
+      </td>
+      <td>
+        <button class="btn btn-danger" (click)="deleteItem(i)">X</button>
+      </td>
+    </tr>
+  </table>
+  <div>
+    <button class="btn btn-success" (click)="onSave()">Save</button>
+  </div>
+
   <!-- end of edit items -->
 </div>
+<pre>{{order | json}}</pre>
+<pre>{{formDate | json}}</pre>
