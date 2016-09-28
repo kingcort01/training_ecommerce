@@ -93,11 +93,22 @@ export class OrderService {
 
   // }
 
-  getOrderFromURL():Observable<Array<Order>>{ //phase 3
+  // getOrderFromURL():Observable<Array<Order>>{ //phase 3
 
-    return this.http.get(URL).map( resp => {
-      return this.loadData(resp.json())
+  //   return this.http.get(URL).map( resp => {
+  //     return this.loadData(resp.json())
+  //   })
+
+  // }
+
+  loadDataFromURL():Promise<Array<Order>>{ //phase 4
+
+    return this.http.get(URL).toPromise().then(resp => {
+      this._orders = this.loadData( resp.json() )
+      this.save()
+      return this._orders
     })
+
 
   }
 

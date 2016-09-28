@@ -12,11 +12,11 @@ import { Observable } from "rxjs"
 export class ReceiptSelectorComponent implements OnInit {
 
   orders:Array<Order>
-  ob_orders:Observable<Array<Order>> // phase 3
-  promise_orders:Promise<Array<Order>>
+  // ob_orders:Observable<Array<Order>> // phase 3
+  // promise_orders:Promise<Array<Order>>
 
   //inject the service instance in constructor
-  constructor( os:OrderService  ) {
+  constructor(private os:OrderService  ) {
       this.orders = os.load()
       // os.getOrderFromURL( order => { //phase 1
       //   console.log("THE ORDER DATA :: ", order)
@@ -30,24 +30,33 @@ export class ReceiptSelectorComponent implements OnInit {
 
       //phase 2 v2
       // os.getOrderFromURL().then( orders => this.orders )
-      this.ob_orders = os.getOrderFromURL(); //phase 3
+      // this.ob_orders = os.getOrderFromURL(); //phase 3
 
+  }
+
+  loadFromURL(){
+
+    this.os.loadDataFromURL().then( orders => {
+      this.orders = orders;
+    })
+  
   }
 
    //init when done created a component
   ngOnInit() {
 
-    this.ob_orders.subscribe( data => { //phase 3
-      this.orders = data
-    })
+    // this.ob_orders.subscribe( data => { //phase 3
+    //   this.orders = data
+    // })
 
     // this.promise_orders.then( orders => {
 
     // })
 
-    this.onSomething()
+    // this.onSomething()
 
   }
+
 
   onSomething(){
 
@@ -55,12 +64,12 @@ export class ReceiptSelectorComponent implements OnInit {
     //   console.log("do some othe stuff")
     // })
 
-    this.ob_orders.map( orders => {
-      console.log('call map')
-      return orders[0].items[0].quantity
-    }).subscribe( data => {
-      console.log(data)
-    })
+    // this.ob_orders.map( orders => {
+    //   console.log('call map')
+    //   return orders[0].items[0].quantity
+    // }).subscribe( data => {
+    //   console.log(data)
+    // })
 
   }
 
