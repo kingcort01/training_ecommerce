@@ -7,7 +7,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { ReceiptComponent } from "./receipt/receipt.component"
 import { ReceiptSelectorComponent } from "./receipt-selector/receipt-selector.component"
 import { AboutComponent } from "./about/about.component"
-
+import { ReceiptEditorComponent } from "./receipt-editor/receipt-editor.component"
 
 //create appRoute constant
 const appRoute:Routes = [
@@ -27,6 +27,14 @@ const appRoute:Routes = [
     {
         path:'about',
         component:AboutComponent
+    },
+    {
+        path:'editor',
+        component:ReceiptEditorComponent
+    },
+    {
+        path:'editor/:id',
+        component:ReceiptEditorComponent
     }
     /*
     {
