@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Http } from "@angular/http" //inject to constructor
 import 'rxjs/add/operator/toPromise' // need to import to use toPromise()
+import 'rxjs/add/operator/map' //need to import to use .map
 import { Operator, Observable } from "rxjs" //import data to be able to use it in xml
 import { Order } from "./order"
 import { OrderItem } from "./order-item"
@@ -77,18 +78,26 @@ export class OrderService {
   //   this.http.get(URL).subscribe( resp => { //phase 1
   //     console.log(resp)
   //     console.log("ORDER : ", resp.json())
-  //     callback(resp.json())
+  //     callback(this.loadData( resp.json() ))
   //   } )
 
   //   // return this.http.get(URL).toPromise() //phase 2
 
   // }
 
-  getOrderFromURL():Promise<Array<Order>>{ //phase 2
+  // getOrderFromURL():Promise<Array<Order>>{ //phase 2
 
-    return this.http.get(URL).toPromise()
-              .then( resp => this.loadData(resp.json()) )
-              .catch( reason => [] )
+  //   return this.http.get(URL).toPromise()
+  //             .then( resp => this.loadData(resp.json()) )
+  //             .catch( reason => [] )
+
+  // }
+
+  getOrderFromURL():Observable<Array<Order>>{ //phase 3
+
+    return this.http.get(URL).map( resp => {
+      return this.loadData(resp.json())
+    })
 
   }
 

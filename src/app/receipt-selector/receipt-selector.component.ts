@@ -2,6 +2,7 @@
 import { Component, OnInit } from '@angular/core';
 import { OrderService } from "../order.service"
 import { Order } from "../order"
+import { Observable } from "rxjs"
 
 @Component({
   selector: 'app-receipt-selector',
@@ -11,6 +12,8 @@ import { Order } from "../order"
 export class ReceiptSelectorComponent implements OnInit {
 
   orders:Array<Order>
+  ob_orders:Observable<Array<Order>> // phase 3
+  promise_orders:Promise<Array<Order>>
 
   //inject the service instance in constructor
   constructor( os:OrderService  ) {
@@ -26,12 +29,38 @@ export class ReceiptSelectorComponent implements OnInit {
       // })
 
       //phase 2 v2
-      os.getOrderFromURL().then( orders => this.orders )
+      // os.getOrderFromURL().then( orders => this.orders )
+      this.ob_orders = os.getOrderFromURL(); //phase 3
 
   }
 
    //init when done created a component
   ngOnInit() {
+
+    this.ob_orders.subscribe( data => { //phase 3
+      this.orders = data
+    })
+
+    // this.promise_orders.then( orders => {
+
+    // })
+
+    this.onSomething()
+
+  }
+
+  onSomething(){
+
+    // this.promise_orders.then( orders => {
+    //   console.log("do some othe stuff")
+    // })
+
+    this.ob_orders.map( orders => {
+      console.log('call map')
+      return orders[0].items[0].quantity
+    }).subscribe( data => {
+      console.log(data)
+    })
 
   }
 
