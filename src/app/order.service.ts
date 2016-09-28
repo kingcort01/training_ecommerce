@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Http } from "@angular/http" 
 import { Order } from "./order"
 import { OrderItem } from "./order-item"
 
@@ -27,12 +28,18 @@ const ORDERS = [
     ]
 
 const LOCAL_KEY:string = "order_key"
+
+const URL:string = "data/orders.json" //path of files(backend)
+
 @Injectable()
 export class OrderService {
    
-  constructor() {
+  // private http:Http
+
+  constructor(private http:Http) {
     //make everytime we call this service load all data to _orders 
     this.load();
+    this.http = http
   }
 
   private _orders:Array<Order>;
@@ -61,6 +68,13 @@ export class OrderService {
     return this._orders;
   }
 
+  getOrderFromURL(callback:Function){
+    this.http.get(URL).subscribe( data => {
+      console.log(data)
+      console.log("ORDER : ", data.json())
+      callback(data.json())
+    } )
+  }
 
   getAllOrder(): Array<Order>{
     

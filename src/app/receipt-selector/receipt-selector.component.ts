@@ -15,6 +15,10 @@ export class ReceiptSelectorComponent implements OnInit {
   //inject the service instance in constructor
   constructor( os:OrderService  ) {
       this.orders = os.load()
+      os.getOrderFromURL( order => {
+        this.orders = order
+        console.log("CHECK THIS ORDER : ", this.orders)
+      })
   }
 
    //init when done created a component
