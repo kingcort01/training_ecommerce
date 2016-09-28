@@ -15,14 +15,26 @@ export class ReceiptSelectorComponent implements OnInit {
   //inject the service instance in constructor
   constructor( os:OrderService  ) {
       this.orders = os.load()
-      os.getOrderFromURL( order => {
-        this.orders = order
-        console.log("CHECK THIS ORDER : ", this.orders)
-      })
+      // os.getOrderFromURL( order => { //phase 1
+      //   console.log("THE ORDER DATA :: ", order)
+      //   this.orders = order
+      //   console.log("CHECK THIS ORDER : ", this.orders)
+      // })
+
+      // os.getOrderFromURL().then( resp => { //phase 2
+      //   console.log( resp ) 
+      // })
+
+      //phase 2 v2
+      os.getOrderFromURL().then( orders => this.orders )
+
   }
 
    //init when done created a component
   ngOnInit() {
+
   }
+
+
 
 }
